@@ -1,51 +1,39 @@
-
-import {mount,shallow} from 'enzyme';
-import {expect} from 'chai';
-import { MemoryRouter } from 'react-router';
-import configureMockStore from 'redux-mock-store'
-// import { act,create } from 'react-dom/test-utils';
-import { renderHook, act } from '@testing-library/react-hooks'
-
-import {Provider} from 'react-redux'
-
-import App from '../App'
+/* eslint-disable no-undef */
+import React from 'react'
+import { mount } from 'enzyme'
+import { expect } from 'chai'
+import { MemoryRouter } from 'react-router'
 import Home from '../views/Home'
 import Employees from '../views/Employees'
+import App from '../App'
 
-
-
-// jest.mock('react-redux', () => ({
-//   ...jest.requireActual('react-redux'),
-//   useDispatch: jest.fn(()=>console.log('tttttttttttt'))
-// }));
-
-describe('Given the home page',()=>{
-
-  describe('When the url is /',()=>{
-    it('Then have the Home component', ()=>{
-      const wrapper = mount(<MemoryRouter initialEntries={[ '/' ]}><App/></MemoryRouter>);
-      expect((wrapper).find(Home)).to.have.length(1)
-      expect((wrapper).find(Employees)).to.have.length(0)
+describe('Given the home page', () => {
+  describe('When the url is /', () => {
+    it('Then have the Home component', (done) => {
+      const wrapper = mount(
+        <MemoryRouter initialEntries={['/']}>
+          <App />
+        </MemoryRouter>
+      )
+      setTimeout(() => {
+        expect(wrapper.find(Home)).to.have.length(1)
+        expect(wrapper.find(Employees)).to.have.length(0)
+        done()
+      }, 100)
     })
   })
-
-  describe('When had employee',()=>{
-
-    it('Then have the Home component', (done)=>{
-      const mockStore = configureMockStore()
-      const store = mockStore({})
-      const wrapper = shallow(<Provider store={store}><Home/></Provider>);
-
-      store.dispatch = jest.fn();
-
-      const button = wrapper.find('#addEmployee').first()
-      button.simulate('click')
+  describe('When the url is /employees', () => {
+    it('Then have the Employees component', (done) => {
+      const wrapper = mount(
+        <MemoryRouter initialEntries={['/employees']}>
+          <App />
+        </MemoryRouter>
+      )
       setTimeout(() => {
-        const modal = wrapper.find('#simple-modal-description')
-        console.log(modal);
-        expect(store.getState().length).to.been.equal(1)
+        expect(wrapper.find(Employees)).to.have.length(1)
+        expect(wrapper.find(Home)).to.have.lengthOf(0)
         done()
-      }, 1);
+      }, 200)
     })
   })
 })
