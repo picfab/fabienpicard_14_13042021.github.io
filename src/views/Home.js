@@ -27,10 +27,13 @@ function getModalStyle() {
 }
 
 /**
- * The Home view with the form for add a employee.
+ * The Home view with the form for add an employee.
  * @see  {@link https://material-ui.com/ Material UI} For the Material UI component used on this view.
  * @module Home
+ * @category Views
  * @component
+ * @param {object} props Length of table data
+ * @prop {function} props.addEmployee Function for add employee in database
  */
 export default function Home({ addEmployee }) {
   const fieldsRequired = ['firstName', 'lastName', 'dateOfBirth']

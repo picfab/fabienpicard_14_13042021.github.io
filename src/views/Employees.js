@@ -12,6 +12,10 @@ import { useStyles } from '../data/styles'
  * The view of employees
  * @module Employees
  * @component
+ * @category Views
+ * @param {object} props Length of table data
+ * @prop {function} props.addEmployee Function for add employee in database
+ * @prop {array} props.employees Array of employees object
  */
 export default function Employees({ employees, addAllEmployees }) {
   const classes = useStyles()

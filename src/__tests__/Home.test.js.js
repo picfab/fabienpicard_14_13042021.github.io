@@ -28,7 +28,7 @@ describe('When had employee', () => {
     lastName.simulate('blur')
     const dateOfBirth = wrapper.find('input#dateOfBirth')
     dateOfBirth.simulate('focus')
-    dateOfBirth.simulate('change', { target: { value: '2021-04-15T17:30' } })
+    dateOfBirth.simulate('change', { target: { value: '2021-04-15' } })
     dateOfBirth.simulate('blur')
 
     const button = wrapper.find('button#addEmployee').first()
@@ -38,7 +38,7 @@ describe('When had employee', () => {
       expect(addEmployee).to.have.been.calledWith({
         firstName: 'Fabien',
         lastName: 'Picard',
-        dateOfBirth: '04/15/2021 17:30',
+        dateOfBirth: '04/15/2021',
         startDate: '',
         department: '',
         street: '',

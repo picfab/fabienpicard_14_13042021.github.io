@@ -7,7 +7,8 @@ import PropTypes from 'prop-types'
  * The react router logic
  * @module Routes
  * @component
- * @param {object}  urls  urls is an object with React elements in folder Views
+ * @param {object}  props
+ * @param {object}  props.urls  urls is an object with React elements in folder Views
  */
 export default function Routes({ urls }) {
   const { home, employees } = urls
