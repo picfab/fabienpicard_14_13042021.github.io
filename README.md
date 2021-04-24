@@ -3,11 +3,11 @@
 # Instalation
 
 1 - First download the project
-2 - Launch `yarn install
+2 - Launch ``yarn install``
 
 # Documentation
 
-[Find all component description and the documentation here](https://facebook.github.io/create-react-app/docs/running-tests)
+[Find all component description and the documentation here](https://picfab.github.io/fabienpicard_14_13042021.github.io/)
 
 
 
