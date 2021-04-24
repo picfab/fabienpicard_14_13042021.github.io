@@ -2,8 +2,8 @@
 
 # Instalation
 
-1 - First download the project
-2 - Launch ``yarn install``
+1. First download the project
+2. Launch ``yarn install``
 
 # Documentation
 
