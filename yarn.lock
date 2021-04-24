@@ -12320,10 +12320,10 @@
   "resolved" "https://registry.npmjs.org/symbol-tree/-/symbol-tree-3.2.4.tgz"
   "version" "3.2.4"
 
-"table-hrnet@^0.0.4":
-  "integrity" "sha512-N57zW4LbcxMAnFH0/D3v8+/hdovJC/aPdBVJH1pojkFL/fmdrIBp7+jsXkWqWZU0jRDifrz8OFPZa0IYXC9Wdw=="
-  "resolved" "https://registry.npmjs.org/table-hrnet/-/table-hrnet-0.0.4.tgz"
-  "version" "0.0.4"
+"table-hrnet@^0.0.5":
+  "integrity" "sha512-0mOi0WJqy+5PufKMnZtcqZshETvOacB3XsoTp5EKHSGv8dVqKurYamuemGcte976WWs1ASib1f5Yw60ZSmAggw=="
+  "resolved" "https://registry.npmjs.org/table-hrnet/-/table-hrnet-0.0.5.tgz"
+  "version" "0.0.5"
   dependencies:
     "prop-types" "^15.7.2"
     "react" "^17.0.2"

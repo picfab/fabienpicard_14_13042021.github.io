@@ -4,7 +4,7 @@ import Home from './views/Home'
 import Employees from './views/Employees'
 
 /**
- * the application component
+ * The application component
  * @module App
  * @component
  */

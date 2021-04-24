@@ -1,8 +1,10 @@
 import { makeStyles } from '@material-ui/core/styles'
 
 /**
- * CSS in JS (JSS) Prefer use JSS for modify the style of material ui component
- * @see  {@link https://material-ui.com/styles/basics/ Material UI}
+ * CSS in JS (JSS) Prefer use JSS for modify the style of material ui component.<br/>
+ * You can use Material-UI's styling solution in your app, whether or not you are using Material-UI components.
+ * @function
+ * @see  {@link https://material-ui.com/styles/basics/ @material-ui/styles}
  * @category Styles
  * @param   {object}  theme  the theme for makeStyles
  *

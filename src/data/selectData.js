@@ -1,9 +1,13 @@
 /**
- * The array of state for select state component
+ * The array of state for select state
  *
  * @type {array}
  */
 export const states = [
+  {
+    label: '',
+    value: '',
+  },
   {
     value: 'AL',
     label: 'Alabama',
@@ -242,22 +246,31 @@ export const states = [
   },
 ]
 
+/**
+ * The array of department for select department
+ *
+ * @type {array}
+ */
 export const departments = [
   {
+    label: '',
+    value: '',
+  },
+  {
     label: 'Sales',
-    value: 'sales',
+    value: 'Sales',
   },
   {
     label: 'Marketing',
-    value: 'marketing',
+    value: 'Marketing',
   },
   {
     label: 'Engineering',
-    value: 'engineering',
+    value: 'Engineering',
   },
   {
     label: 'Human Resources',
-    value: 'humanResources',
+    value: 'Human Resources',
   },
   {
     label: 'Legal',
