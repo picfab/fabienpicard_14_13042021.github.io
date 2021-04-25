@@ -4,24 +4,20 @@ import Routes from './routes'
 import Home from './views/Home'
 import Employees from './views/Employees'
 
-
 /**
- * the application component
+ * The application component
  * @module App
  * @component
- * @example
- * return ( <App/> )
  */
- export default function App() {
+export default function App() {
   return (
     <Provider store={store}>
       <Routes
-				urls={{
-					home: <Home />,
-					employees: <Employees />,
-				}} />
-     </Provider>
-
+        urls={{
+          home: <Home />,
+          employees: <Employees />,
+        }}
+      />
+    </Provider>
   )
 }
-

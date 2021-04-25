@@ -1,0 +1,188 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>JSDoc: data/styles.js</title>
+
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="./build/entry.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link href="https://fonts.googleapis.com/css?family=Muli:100,400,700|Oswald:300|Inconsolata,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+</head>
+
+<body>
+    <div id="stickyNavbarOverlay"></div>
+    <div class="top-navbar">
+        <div class="container">
+            <nav class="navbar" role="navigation" aria-label="main navigation">
+                <div class="navbar-brand">
+                    
+                     
+                        <h1 class="navbar-item">RhNet Documentation</h1>
+                    
+                    <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                    </a>
+                </div>
+                
+            </nav>
+        </div>
+    </div>
+    <div class="container">
+        <div class="columns">
+            <div class="column is-3" id="sidebarNav">
+                <div class="sidebar">
+                    <nav>
+                        <h2><a href="index.html">Home</a></h2><div class="category"><h3>Components</h3><ul><li><a href="module-App.html">App</a></li><li><a href="module-Logo.html">Logo</a></li><li><a href="module-Routes.html">Routes</a></li><li><a href="module-Spinner.html">Spinner</a></li></ul><h3>Global</h3><ul><li><a href="global.html#closeSvg">closeSvg</a></li><li><a href="global.html#departments">departments</a></li><li><a href="global.html#states">states</a></li></ul></div><div class="category"><h2>API</h2><h3>Global</h3><ul><li><a href="global.html#addEmployeeDb">addEmployeeDb</a></li><li><a href="global.html#getEmployeesDb">getEmployeesDb</a></li></ul></div><div class="category"><h2>Redux</h2><h3>Global</h3><ul><li><a href="global.html#ADD_EMPLOYEE">ADD_EMPLOYEE</a></li><li><a href="global.html#addEmployeeAction">addEmployeeAction</a></li><li><a href="global.html#FETCH_SAVE_EMPLOYEES">FETCH_SAVE_EMPLOYEES</a></li><li><a href="global.html#fetchSaveEmployeesAction">fetchSaveEmployeesAction</a></li><li><a href="global.html#Reducerforemployeesstore">Reducer for employees store</a></li></ul></div><div class="category"><h2>Styles</h2><h3>Global</h3><ul><li><a href="global.html#useStyles">useStyles</a></li></ul></div><div class="category"><h2>Views</h2><h3>Components</h3><ul><li><a href="module-Employees.html">Employees</a></li><li><a href="module-Home.html">Home</a></li></ul></div>
+                    </nav>
+                </div>
+            </div>
+            <div class="column is-9-desktop">
+                <div class="content" id="main-content-wrapper">
+                    <header class="page-title">
+                        <p>Source</p>
+                        <h1>data/styles.js</h1>
+                    </header>
+                    
+                    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { makeStyles } from '@material-ui/core/styles'
+
+/**
+ * CSS in JS (JSS) Prefer use JSS for modify the style of material ui component.&lt;br/>
+ * You can use Material-UI's styling solution in your app, whether or not you are using Material-UI components.
+ * @function
+ * @see  {@link https://material-ui.com/styles/basics/ @material-ui/styles}
+ * @category Styles
+ * @param   {object}  theme  the theme for makeStyles
+ *
+ * @return  {object} The styles in JSS
+ */
+// eslint-disable-next-line import/prefer-default-export
+export const useStyles = makeStyles((theme) => ({
+  root: {
+    textAlign: 'center',
+    display: 'flex',
+    flexDirection: 'column',
+    maxWidth: 290,
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    '&amp; > *': {
+      margin: theme.spacing(1),
+      width: '100%',
+    },
+    '&amp; .MuiTextField-root, &amp; .MuiFormControl-root, &amp; button': {
+      margin: theme.spacing(1),
+    },
+  },
+  employees: {
+    maxWidth: 966,
+  },
+  h1: {
+    '&amp; > svg': {
+      width: '20px',
+      height: '20px',
+    },
+  },
+  labelSelect: {
+    background: '#fff',
+    padding: '0 5px',
+  },
+  container: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  adressBox: {
+    padding: theme.spacing(1),
+    borderRadius: 5,
+    boxSizing: 'border-box',
+    border: '1px solid #000',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderColor: 'rgba(0, 0, 0, 0.23)',
+    '&amp; > *': {
+      width: '100%',
+      boxSizing: 'border-box',
+    },
+  },
+  btn: {
+    width: 200,
+    '&amp;.MuiButtonBase-root': {
+      marginRight: 'auto',
+      marginLeft: 'auto',
+    },
+  },
+  paper: {
+    position: 'absolute',
+    width: 400,
+    backgroundColor: theme.palette.background.paper,
+    border: '2px solid #000',
+    borderRadius: '8px',
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(2, 4, 3),
+  },
+  close: {
+    position: 'absolute',
+    top: '-15px',
+    right: '-15px',
+    width: '30px',
+    height: '30px',
+    cursor: 'pointer',
+  },
+  spinner: {
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    zIndex: 999,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+}))
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+<footer class="footer">
+    <div class="content has-text-centered">
+        <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.6</a> on Sun Apr 25 2021 18:21:03 GMT+0200 (heure d’été d’Europe centrale)</p>
+        <p class="sidebar-created-by">
+            <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
+            <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+        </p>
+    </div>
+</footer>
+
+<script src="scripts/app.min.js"></script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

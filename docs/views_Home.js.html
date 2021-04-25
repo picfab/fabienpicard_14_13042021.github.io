@@ -1,0 +1,386 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>JSDoc: views/Home.js</title>
+
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="./build/entry.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link href="https://fonts.googleapis.com/css?family=Muli:100,400,700|Oswald:300|Inconsolata,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+</head>
+
+<body>
+    <div id="stickyNavbarOverlay"></div>
+    <div class="top-navbar">
+        <div class="container">
+            <nav class="navbar" role="navigation" aria-label="main navigation">
+                <div class="navbar-brand">
+                    
+                     
+                        <h1 class="navbar-item">RhNet Documentation</h1>
+                    
+                    <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                    </a>
+                </div>
+                
+            </nav>
+        </div>
+    </div>
+    <div class="container">
+        <div class="columns">
+            <div class="column is-3" id="sidebarNav">
+                <div class="sidebar">
+                    <nav>
+                        <h2><a href="index.html">Home</a></h2><div class="category"><h3>Components</h3><ul><li><a href="module-App.html">App</a></li><li><a href="module-Logo.html">Logo</a></li><li><a href="module-Routes.html">Routes</a></li><li><a href="module-Spinner.html">Spinner</a></li></ul><h3>Global</h3><ul><li><a href="global.html#closeSvg">closeSvg</a></li><li><a href="global.html#departments">departments</a></li><li><a href="global.html#states">states</a></li></ul></div><div class="category"><h2>API</h2><h3>Global</h3><ul><li><a href="global.html#addEmployeeDb">addEmployeeDb</a></li><li><a href="global.html#getEmployeesDb">getEmployeesDb</a></li></ul></div><div class="category"><h2>Redux</h2><h3>Global</h3><ul><li><a href="global.html#ADD_EMPLOYEE">ADD_EMPLOYEE</a></li><li><a href="global.html#addEmployeeAction">addEmployeeAction</a></li><li><a href="global.html#FETCH_SAVE_EMPLOYEES">FETCH_SAVE_EMPLOYEES</a></li><li><a href="global.html#fetchSaveEmployeesAction">fetchSaveEmployeesAction</a></li><li><a href="global.html#Reducerforemployeesstore">Reducer for employees store</a></li></ul></div><div class="category"><h2>Styles</h2><h3>Global</h3><ul><li><a href="global.html#useStyles">useStyles</a></li></ul></div><div class="category"><h2>Views</h2><h3>Components</h3><ul><li><a href="module-Employees.html">Employees</a></li><li><a href="module-Home.html">Home</a></li></ul></div>
+                    </nav>
+                </div>
+            </div>
+            <div class="column is-9-desktop">
+                <div class="content" id="main-content-wrapper">
+                    <header class="page-title">
+                        <p>Source</p>
+                        <h1>views/Home.js</h1>
+                    </header>
+                    
+                    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import TextField from '@material-ui/core/TextField'
+import Select from '@material-ui/core/Select'
+import FormControl from '@material-ui/core/FormControl'
+import InputLabel from '@material-ui/core/InputLabel'
+import Button from '@material-ui/core/Button'
+import { Link } from 'react-router-dom'
+import Modal from '@material-ui/core/Modal'
+import moment from 'moment'
+import { states, departments } from '../data/selectData'
+import { addEmployeeDb } from '../Controller/dataEmployees'
+import { useStyles } from '../data/styles'
+import Logo from '../Components/Logo'
+import { closeSvg } from '../data/svg'
+import { addEmployeeAction } from '../store/employeesActions'
+
+function getModalStyle() {
+  const top = 50
+  const left = 50
+
+  return {
+    top: `${top}%`,
+    left: `${left}%`,
+    transform: `translate(-${top}%, -${left}%)`,
+  }
+}
+
+/**
+ * The Home view with the form for add an employee.
+ * @see  {@link https://material-ui.com/ Material UI} For the Material UI component used on this view.
+ * @module Home
+ * @category Views
+ * @component
+ */
+export default function Home() {
+  const dispatch = useDispatch()
+
+  const fieldsRequired = ['firstName', 'lastName', 'dateOfBirth']
+  const [errorFirstName, setErrorFirstName] = useState({
+    error: false,
+    message: 'First name is required',
+  })
+  const [errorLaststName, setErrorLaststName] = useState({
+    error: false,
+    message: 'Last name is required',
+  })
+  const [errorBirthDay, setErrorBirthDay] = useState({
+    error: false,
+    message: 'Date of Birthday  is required',
+  })
+
+  const [modalStyle] = useState(getModalStyle)
+  const [open, setOpen] = useState(false)
+  const classes = useStyles()
+
+  const initialValue = {
+    firstName: '',
+    lastName: '',
+    dateOfBirth: '',
+    startDate: '',
+    department: '',
+    street: '',
+    city: '',
+    state: '',
+    zipCode: '',
+  }
+  const [employee, setEmployee] = useState(initialValue)
+
+  const saveEmployee = () => {
+    const verifRequired = Object.entries(employee).filter(
+      ([key, value]) => !value &amp;&amp; fieldsRequired.includes(key)
+    )
+    // Verif if not fields required is empty
+    if (verifRequired.length > 0) {
+      verifRequired.forEach((x) => {
+        if (x[0] === 'firstName') {
+          setErrorFirstName({ ...errorFirstName, error: true })
+        }
+        if (x[0] === 'lastName') {
+          setErrorLaststName({ ...errorLaststName, error: true })
+        }
+        if (x[0] === 'dateOfBirth') {
+          setErrorBirthDay({ ...errorBirthDay, error: true })
+        }
+      })
+    } else {
+      addEmployeeDb(employee).then((data) => {
+        dispatch(addEmployeeAction(data))
+        setOpen(true)
+        setErrorFirstName({ ...errorFirstName, error: false })
+        setErrorLaststName({ ...errorLaststName, error: false })
+        setErrorBirthDay({ ...errorBirthDay, error: false })
+      })
+    }
+  }
+
+  const handleClose = () => {
+    setOpen(false)
+    setEmployee(initialValue)
+  }
+
+  const body = (
+    &lt;div style={modalStyle} className={classes.paper}>
+      &lt;div
+        onKeyDown={(e) => {
+          if (e.key === 'Enter') {
+            handleClose()
+          }
+        }}
+        role='button'
+        tabIndex={-1}
+        className={classes.close}
+        id='close-success-modal'
+        onClick={handleClose}>
+        {closeSvg}
+      &lt;/div>
+      &lt;p id='simple-modal-description'>Employee Created!&lt;/p>
+    &lt;/div>
+  )
+
+  return (
+    &lt;div className='App'>
+      &lt;form className={classes.root} noValidate autoComplete='off'>
+        &lt;h1 className={classes.h1}>
+          &lt;Logo /> HRnet
+        &lt;/h1>
+        &lt;Button component={Link} color='primary' to='/employees'>
+          View Current Employees
+        &lt;/Button>
+        &lt;h2>Create Employee&lt;/h2>
+        &lt;TextField
+          id='firstName'
+          label='First Name'
+          variant='outlined'
+          helperText={errorFirstName.error ? errorFirstName.message : ''}
+          error={errorFirstName.error}
+          value={employee.firstName}
+          onChange={(e) =>
+            setEmployee({ ...employee, firstName: e.target.value })
+          }
+        />
+        &lt;TextField
+          id='lastName'
+          label='Last Name'
+          helperText={errorFirstName.error ? errorFirstName.message : ''}
+          error={errorFirstName.error}
+          variant='outlined'
+          value={employee.lastName}
+          onChange={(e) =>
+            setEmployee({ ...employee, lastName: e.target.value })
+          }
+        />
+        &lt;TextField
+          id='dateOfBirth'
+          label='Date of Birth'
+          helperText={errorBirthDay.error ? errorBirthDay.message : ''}
+          error={errorBirthDay.error}
+          type='date'
+          variant='outlined'
+          className={classes.textField}
+          value={
+            !employee.dateOfBirth
+              ? employee.dateOfBirth
+              : moment(employee.dateOfBirth, 'MM/DD/YYYY').format('yyyy-MM-DD')
+          }
+          onChange={(e) => {
+            setEmployee({
+              ...employee,
+              dateOfBirth: moment(e.target.value, 'yyyy-MM-DD').format(
+                'MM/DD/YYYY'
+              ),
+            })
+          }}
+          InputLabelProps={{
+            shrink: true,
+          }}
+        />
+        &lt;TextField
+          id='startDate'
+          label='Start Date'
+          type='datetime-local'
+          variant='outlined'
+          value={
+            !employee.startDate
+              ? ''
+              : moment(employee.startDate, 'MM/DD/YYYY hh:mm').format(
+                  'yyyy-MM-DDThh:mm:ss'
+                )
+          }
+          onChange={(e) => {
+            setEmployee({
+              ...employee,
+              startDate: moment(e.target.value, 'yyyy-MM-DDThh:mm:ss').format(
+                'MM/DD/YYYY HH:mm'
+              ),
+            })
+          }}
+          className={classes.textField}
+          InputLabelProps={{
+            shrink: true,
+          }}
+        />
+        &lt;div className={classes.adressBox}>
+          &lt;h2 className='adressBox__title'>Address&lt;/h2>
+          &lt;TextField
+            id='street'
+            label='Street'
+            variant='outlined'
+            value={employee.street}
+            onChange={(e) =>
+              setEmployee({ ...employee, street: e.target.value })
+            }
+          />
+          &lt;TextField
+            id='city'
+            label='City'
+            variant='outlined'
+            value={employee.city}
+            onChange={(e) => setEmployee({ ...employee, city: e.target.value })}
+          />
+          &lt;FormControl variant='outlined' className={classes.formControl}>
+            &lt;InputLabel htmlFor='state' className={classes.labelSelect}>
+              State
+            &lt;/InputLabel>
+            &lt;Select
+              native
+              value={employee.state}
+              onChange={(e) =>
+                setEmployee({ ...employee, state: e.target.value })
+              }
+              inputProps={{
+                name: 'state',
+                id: 'state',
+              }}>
+              {states.map((option) => (
+                &lt;option key={option.value} value={option.value}>
+                  {option.label}
+                &lt;/option>
+              ))}
+            &lt;/Select>
+          &lt;/FormControl>
+          &lt;TextField
+            id='zipcode'
+            label='Zipcode'
+            variant='outlined'
+            type='number'
+            value={employee.zipCode}
+            onChange={(e) =>
+              setEmployee({ ...employee, zipCode: e.target.value })
+            }
+            InputLabelProps={{
+              shrink: true,
+            }}
+          />
+        &lt;/div>
+        &lt;FormControl variant='outlined' className={classes.formControl}>
+          &lt;InputLabel htmlFor='department' className={classes.labelSelect}>
+            Department
+          &lt;/InputLabel>
+          &lt;Select
+            native
+            value={employee.department}
+            onChange={(e) =>
+              setEmployee({ ...employee, department: e.target.value })
+            }
+            inputProps={{
+              name: 'department',
+              id: 'department',
+            }}>
+            {departments.map((option) => (
+              &lt;option key={option.value} value={option.value}>
+                {option.label}
+              &lt;/option>
+            ))}
+          &lt;/Select>
+        &lt;/FormControl>
+        &lt;Button
+          id='addEmployee'
+          variant='contained'
+          color='primary'
+          onClick={saveEmployee}>
+          Save
+        &lt;/Button>
+      &lt;/form>
+      &lt;Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby='simple-modal-title'
+        aria-describedby='simple-modal-description'>
+        {body}
+      &lt;/Modal>
+    &lt;/div>
+  )
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+<footer class="footer">
+    <div class="content has-text-centered">
+        <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.6</a> on Sun Apr 25 2021 18:21:03 GMT+0200 (heure d’été d’Europe centrale)</p>
+        <p class="sidebar-created-by">
+            <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
+            <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+        </p>
+    </div>
+</footer>
+
+<script src="scripts/app.min.js"></script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

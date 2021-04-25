@@ -5,6 +5,7 @@
   },
   "source": {
       "include": ["./src","./README.md"],
+      "exclude": ["./src/__tests__","./src/__mocks__"],
       "includePattern": ".+\\.js(doc|x)?$"
   },
   "plugins": [
@@ -17,15 +18,11 @@
       "destination": "docs/",
       "recurse": true,
       "verbose": true,
-      "template": "./node_modules/better-docs",
-      "tutorials":"./doc-asset/tutorials"
+      "template": "./node_modules/better-docs"
   },
   "templates": {
       "better-docs": {
-          "name": "SportSee Documentation",
-          "component": {
-              "wrapper": "./src/wrapper/Component.js"
-            }
+          "name": "RhNet Documentation"
       }
   }
 }
