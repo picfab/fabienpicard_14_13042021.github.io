@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import ReactDOM from 'react-dom'
 
 // mocks react-dom and its render method
@@ -13,6 +14,7 @@ describe('Given the app', () => {
     root.id = 'root'
     document.body.appendChild(root)
     // Requires index.js so that react-dom render method is called
+    // eslint-disable-next-line global-require
     require('../index.js')
     // Asserts render was called with <App />
     // and HTML element with id = root

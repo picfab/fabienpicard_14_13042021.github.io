@@ -11,6 +11,7 @@ import Home from '../views/Home'
 describe('When had employee', () => {
   let wrapper
 
+  // eslint-disable-next-line no-undef
   beforeEach(() => {
     wrapper = null
   })

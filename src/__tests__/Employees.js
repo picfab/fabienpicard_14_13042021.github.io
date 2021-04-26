@@ -22,13 +22,11 @@ describe('Given the employees page', () => {
       const addAllEmployees = sinon.spy((emp) => {
         employees.push(...emp)
       })
-
       mount(
         <MemoryRouter>
           <Employees employees={employees} addAllEmployees={addAllEmployees} />
         </MemoryRouter>
       )
-
       await waitFor(() => expect(employees.length).to.have.been.equal(1))
     })
   })

@@ -5,13 +5,12 @@ import { mount } from 'enzyme'
 import { expect } from 'chai'
 import { MemoryRouter } from 'react-router-dom'
 import { waitFor } from '@testing-library/react'
-import { act } from 'react-dom/test-utils'
 import Home from '../views/Home'
 import Employees from '../views/Employees'
 import App from '../App'
 import { localStorageMock } from '../__mocks__/localStorage'
 
-describe('Given the home page', () => {
+describe('Given the good page', () => {
   Object.defineProperty(window, 'localStorage', { value: localStorageMock })
   const mockSetState = jest.fn()
 
