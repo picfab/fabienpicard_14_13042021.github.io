@@ -1,17 +1,18 @@
-export const localStorageMock = (function() {
-  let store = {};
+// eslint-disable-next-line import/prefer-default-export
+export const localStorageMock = (() => {
+  let store = {}
   return {
-    getItem: function(key) {
-      return JSON.stringify(store[key])
+    getItem(key) {
+      return store[key]
     },
-    setItem: function(key, value) {
-      store[key] = value.toString()
+    setItem(key, value) {
+      store[key] = value
     },
-    clear: function() {
+    clear() {
       store = {}
     },
-    removeItem: function(key) {
+    removeItem(key) {
       delete store[key]
-    }
+    },
   }
 })()

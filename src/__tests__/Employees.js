@@ -1,11 +1,9 @@
 import React from 'react'
-
 import { mount } from 'enzyme'
 import { expect } from 'chai'
 import { MemoryRouter } from 'react-router-dom'
-// import { act,create } from 'react-dom/test-utils';
+import { waitFor } from '@testing-library/react'
 import sinon from 'sinon'
-
 import Employees from '../views/Employees'
 import { localStorageMock } from '../__mocks__/localStorage'
 
@@ -14,7 +12,7 @@ describe('Given the employees page', () => {
   // eslint-disable-next-line no-undef
   describe('When had employee', () => {
     // eslint-disable-next-line no-undef
-    it('Then addEmployee function send the form value', (done) => {
+    it('Then addEmployee function send the form value', async () => {
       Object.defineProperty(window, 'localStorage', { value: localStorageMock })
       window.localStorage.setItem(
         'employees',
@@ -22,8 +20,7 @@ describe('Given the employees page', () => {
       )
       const employees = []
       const addAllEmployees = sinon.spy((emp) => {
-        const empParse = JSON.parse(emp)
-        employees.push(...empParse)
+        employees.push(...emp)
       })
 
       mount(
@@ -32,10 +29,7 @@ describe('Given the employees page', () => {
         </MemoryRouter>
       )
 
-      setTimeout(() => {
-        expect(employees.length).to.have.been.equal(1)
-        done()
-      }, 200)
+      await waitFor(() => expect(employees.length).to.have.been.equal(1))
     })
   })
 })

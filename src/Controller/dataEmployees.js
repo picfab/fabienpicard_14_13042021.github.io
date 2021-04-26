@@ -22,5 +22,5 @@ export const addEmployeeDb = (employee) =>
 export const getEmployeesDb = () =>
   new Promise((resolve) => {
     const employees = localStorage.getItem('employees')
-    resolve(JSON.parse(employees))
+    resolve(employees ? JSON.parse(employees) : [])
   })
